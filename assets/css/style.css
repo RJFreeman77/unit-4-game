@@ -1,0 +1,73 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-image: url(../images/adventure-time-background.jpg);
+    height: 100%;
+    width: 100%;
+    padding: 20px 30px;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: 600;
+}
+h2 {
+    font-size: 30px;
+    font-weight: 400;
+    font-family: 'Permanent Marker', cursive;
+}
+p {
+    font-size: 16px;
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+h1, h2 {
+    padding: 5px;
+}
+
+img {
+    width: 125px;
+    height: 125px;
+    object-fit: scale-down; 
+    margin: auto;
+    display: block;
+}
+.game-title {
+    text-align: right;
+    font-family: 'Permanent Marker', cursive;
+}
+.character-card {
+    background-color: white;
+    padding: 10px;
+    border: solid 3px blueviolet;
+    width: 160px;
+    float: left;
+    margin: 0 5px 0 0;
+    height: 175px;
+}
+.card-name-p {
+    height: 35px;
+}
+.card-row {
+    height: 240px;
+    clear: both;
+}
+.button-row {
+    height: 240px;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+#npc-enemies {
+    float: left;
+    width: 50%;
+}
+#button-row {
+    float: left;
+    width: 50%;
+}
