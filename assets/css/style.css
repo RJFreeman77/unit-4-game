@@ -5,7 +5,6 @@
 body {
     background-image: url(../images/adventure-time-background.jpg);
     height: 100%;
-    width: 100%;
     padding: 20px 30px;
 }
 
@@ -69,5 +68,5 @@ img {
 }
 #button-row {
     float: left;
-    width: 50%;
+    width: 30%;
 }
