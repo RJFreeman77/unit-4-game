@@ -62,7 +62,7 @@ img {
     clear: both;
     display: table;
 }
-#npc-enemies {
+#opponents {
     float: left;
     width: 50%;
 }
