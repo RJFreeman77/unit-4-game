@@ -9,125 +9,149 @@
 // after enemy is defeated, change the div to display: none;
 
 // have to put down display information about who was attacked. 
+
+
+// General Game Variab;es
 var playerCharacterHP = 0;
 var playerCharacterAP = 0;
 var enemyHP = 0;
 var enemyCA = 0;
 var isPCSelected = false;
 var isEnemySelected = false;
+var currentEnemyName;
 
+// jQuery Variables
+var opponentsP = $("#opponents");
+
+// Character Objects
 var hotDogPrincess = {
+    name: "Hot Dog Princess",
     healthPoints: 100,
     attackPoints: 3,
     counterAttack: 15,
     hasBattled: false,
     id: $("#hot-dog"),
     moveOtherCards: function () {
-        $("#opponents").append($("#choose-goose"));
-        $("#opponents").append($("#war-elephant"));
-        $("#opponents").append($("#james-i"));
+        opponentsP.append($("#choose-goose"));
+        opponentsP.append($("#war-elephant"));
+        opponentsP.append($("#james-i"));
     },
 }
 var warElephant = {
+    name: "Ancient Psychic Tandem War Elephant",
     healthPoints: 200,
     attackPoints: 12,
     counterAttack: 30,
     hasBattled: false,
     id: $("#war-elephant"),
     moveOtherCards: function () {
-        $("#opponents").append($("#hot-dog"));
-        $("#opponents").append($("#choose-goose"));
-        $("#opponents").append($("#james-i"));
+        opponentsP.append($("#hot-dog"));
+        opponentsP.append($("#choose-goose"));
+        opponentsP.append($("#james-i"));
     },
 }
 var chooseGoose = {
+    name: "Choose Goose",
     healthPoints: 150,
     attackPoints: 8,
     counterAttack: 20,
     hasBattled: false,
     id: $("#choose-goose"),
     moveOtherCards: function () {
-        $("#opponents").append($("#hot-dog"));
-        $("#opponents").append($("#war-elephant"));
-        $("#opponents").append($("#james-i"));
+        opponentsP.append($("#hot-dog"));
+        opponentsP.append($("#war-elephant"));
+        opponentsP.append($("#james-i"));
     },
 }
 var james = {
+    name: "James I",
     healthPoints: 80,
     attackPoints: 5,
     counterAttack: 10,
     hasBattled: false,
     id: $("#james-i"),
     moveOtherCards: function () {
-        $("#opponents").append($("#hot-dog"));
-        $("#opponents").append($("#choose-goose"));
-        $("#opponents").append($("#war-elephant"));
+        opponentsP.append($("#hot-dog"));
+        opponentsP.append($("#choose-goose"));
+        opponentsP.append($("#war-elephant"));
     },
 }
 
-function playerCharacerSelect() {
-
-};
-
-function PCselect() {
-
-}
-
-$("div").click(function () {
-    if (!isPCSelected && !isEnemySelected) {
-        switch ($(this).attr("data")) {
-            case "hot-dog":
-                changePCStat(hotDogPrincess);
-                console.log("set stats HDP")
-                break;
-            case "choose-goose":
-                changePCStat(chooseGoose);
-                console.log("set stats CG")
-                break;
-            case "war-elephant":
-                changePCStat(warElephant);
-                console.log("set stats WE");
-                break;
-            case "james":
-                changePCStat(james);
-                console.log("set stats James");
-                break;
+$(document).ready(function () {
+    setCardHP();
+    cardSelection();
+    $("#attack-button").click (function() {
+        if (isPCSelected && !isEnemySelected) {
+            $("#info-text-4").css("display", "inline");
+        } else if (isPCSelected && isEnemySelected) {
+            console.log("placeholder");
         }
-    } else if (isPCSelected && !isEnemySelected) {
-        switch ($(this).parents().attr("data")) {
-            case "hot-dog":
-                changeEnemyStat(hotDogPrincess);
-                console.log("set stats HDP")
-                break;
-            case "choose-goose":
-                changeEnemyStat(chooseGoose);
-                console.log("set stats CG")
-                break;
-            case "war-elephant":
-                changeEnemyStat(warElephant);
-                console.log("set stats WE");
-                break;
-            case "james":
-                changeEnemyStat(james);
-                console.log("set stats James");
-                break;
-        }
-    }
+    });
+
+
 });
 
-
-var changePCStat = function (char) {
+// Functions
+function changePCStat(char) {
     playerCharacterHP = char.healthPoints;
     playerCharacterAP = char.attackPoints;
     isPCSelected = true;
     char.moveOtherCards();
-    console.log("function called");
-};
-var changeEnemyStat = function (enem) {
+}
+function changeEnemyStat(enem) {
     enemyHP = enem.healthPoints;
     enemyCA = enem.counterAttack;
     isEnemySelected = true;
-    $("#npc-enemies").append(enem.id[0]);
-    console.log(enem.id[0]);
-};
-
+    infoHide()
+    $("#npc-enemies").append(enem.id);
+    currentEnemyName = enem.name;
+    enNameTest();
+}
+function setCardHP() {
+    $("#hot-dog-hp").text(hotDogPrincess.healthPoints);
+    $("#choose-goose-hp").text(chooseGoose.healthPoints);
+    $("#war-elephant-hp").text(warElephant.healthPoints);
+    $("#james-i-hp").text(james.healthPoints);
+}
+function infoHide() {
+    $(".info-text").css("display", "none");
+}
+function reset() {
+    setCardHP();
+    infoHide();
+}
+function cardSelection() {
+    $("div").click(function () {
+        if (!isPCSelected && !isEnemySelected) {
+            switch ($(this).attr("data")) {
+                case "hot-dog":
+                    changePCStat(hotDogPrincess);
+                    break;
+                case "choose-goose":
+                    changePCStat(chooseGoose);
+                    break;
+                case "war-elephant":
+                    changePCStat(warElephant);
+                    break;
+                case "james":
+                    changePCStat(james);
+                    break;
+            }
+        } else if (isPCSelected && !isEnemySelected) {
+            switch ($(this).parents().attr("data")) {
+                case "hot-dog":
+                    changeEnemyStat(hotDogPrincess);
+                    break;
+                case "choose-goose":
+                    changeEnemyStat(chooseGoose);
+                    break;
+                case "war-elephant":
+                    changeEnemyStat(warElephant);
+                    break;
+                case "james":
+                    changeEnemyStat(james);
+                    break;
+            }
+        }
+    });
+}

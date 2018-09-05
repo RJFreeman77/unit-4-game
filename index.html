@@ -24,7 +24,7 @@
             <div class="character-img">
                 <img src="assets/images/hot-dog-princess.png" alt="Hot Dog Princess Image">
             </div>
-            <p class="health-points-p">100</p>
+            <p id="hot-dog-hp" class="health-points-p"></p>
         </div>
         <div id="choose-goose" data="choose-goose" class="character-card">
             <div class="card-name-p">
@@ -33,7 +33,7 @@
             <div class="character-img">
                 <img src="assets/images/choose-goose.png" alt="Choose Goose Image">
             </div>
-            <p class="health-points-p">100</p>
+            <p id="choose-goose-hp" class="health-points-p"></p>
         </div>
         <div id="war-elephant" data="war-elephant" class="character-card">
             <div class="card-name-p">
@@ -42,7 +42,7 @@
             <div class="character-img">
                 <img src="assets/images/ancient-psychic-tandem-war-elephant.png" alt="Ancient Psychic Tandem War Elephant Image">
             </div>
-            <p class="health-points-p">100</p>
+            <p id="war-elephant-hp" class="health-points-p"></p>
         </div>
         <div id="james-i" data="james" class="character-card">
             <div class="card-name-p">
@@ -51,7 +51,7 @@
             <div class="character-img">
                 <img src="assets/images/james-i.png" alt="James the First Image">
             </div>
-            <p class="health-points-p">100</p>
+            <p id="james-i-hp" class="health-points-p"></p>
         </div>
     </section>
     <section id="opponents" class="card-row">
@@ -60,11 +60,42 @@
     </section>
     <section id="button-row" class="button-row">
         <h2>Fight Controls</h2>
-        <button>Attack!</button>
+        <button id="attack-button">Attack!</button>
     </section>
     <section id="npc-enemies" class="card-row">
         <h2>Enemy</h2>
 
+    </section>
+    <section id="game-info" class="button-row">
+        <div id="info-text-1" class="info-text">
+            <h3 id="attack-text">You attacked <span class="en-name-span"></span> for <span id="pc-attack"></span> damage.
+                <br>
+                <span class="en-name-span"></span> attacked you for <span id="en-attack"></span> damage.
+            </h3>
+        </div>
+        <div id="info-text-2" class="info-text">
+            <h3>
+                You have been defeated ... Gane Over!!! 
+                <br> Press Restart to play again.
+                <br>
+                <button id="restart">Restart</button>
+            </h3>
+        </div>
+        <div id="info-text-3" class="info-text">
+            <h3>
+                You have defeated <span class="en-name-span"></span>, you can choose to fight another enemy.
+            </h3>
+        </div>
+        <div id="info-text-4" class="info-text">
+            <h3>
+                No enemy here. Please select an enemy to fight. 
+            </h3>
+        </div>
+        <div id="info-text-5" class="info-text">
+            <h3>
+                You Won!! Game Over!!
+            </h3>
+        </div>
     </section>
 
 

@@ -1,5 +1,5 @@
 * {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 body {
@@ -17,6 +17,11 @@ h2 {
     font-weight: 400;
     font-family: 'Permanent Marker', cursive;
 }
+h3 {
+    font-size: 20px;
+    font-weight: 250;
+    font-family: 'Permanent Marker', cursive;
+}
 p {
     font-size: 16px;
     text-align: center;
@@ -32,6 +37,20 @@ img {
     object-fit: scale-down; 
     margin: auto;
     display: block;
+    background-color: white;
+}
+button {
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 18px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-family: 'Roboto Condensed', sans-serif;
+    border-radius: 8px;
 }
 .game-title {
     text-align: right;
@@ -62,11 +81,34 @@ img {
     clear: both;
     display: table;
 }
+.info-text {
+    display: none;
+}
+#info-text-1 {
+    display: none;
+}
+#info-text-2 {
+    display: none;
+}
+
 #opponents {
     float: left;
-    width: 50%;
+    width: 60%;
 }
 #button-row {
     float: left;
-    width: 30%;
+    width: 40%;
 }
+#npc-enemies {
+    float: left;
+    width: 60%;
+}
+#game-info {
+    float: left;
+    width: 40%;
+}
+#restart {
+    background-color: green;
+}
+
+
