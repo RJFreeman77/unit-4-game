@@ -13,90 +13,101 @@
 </head>
 
 <body>
-    <h1 class="game-title">Adventure Time RPG Game!</h1>
-
-    <section id="player-character" class="card-row clearfix">
-        <h2>Pick your Character</h2>
-        <div id="hot-dog" data="hot-dog" class="character-card">
-            <div class="card-name-p">
-                <p>Hot Dog Princess</p>
+    <div class="wrapper">
+        <h1 class="game-title">Adventure Time RPG Game!</h1>
+    
+        <section id="player-character" class="card-row clearfix">
+            <h2>Pick your Character</h2>
+            <div id="hot-dog" class="character-card">
+                <div class="card-name-p">
+                    <p>Hot Dog Princess</p>
+                </div>
+                <div class="character-img">
+                    <img src="assets/images/hot-dog-princess.png" alt="Hot Dog Princess Image">
+                </div>
+                <p id="hot-dog-hp" class="health-points-p"></p>
             </div>
-            <div class="character-img">
-                <img src="assets/images/hot-dog-princess.png" alt="Hot Dog Princess Image">
+            <div id="choose-goose" class="character-card">
+                <div class="card-name-p">
+                    <p>Choose Goose</p>
+                </div>
+                <div class="character-img">
+                    <img src="assets/images/choose-goose.png" alt="Choose Goose Image">
+                </div>
+                <p id="choose-goose-hp" class="health-points-p"></p>
             </div>
-            <p id="hot-dog-hp" class="health-points-p"></p>
-        </div>
-        <div id="choose-goose" data="choose-goose" class="character-card">
-            <div class="card-name-p">
-                <p>Choose Goose</p>
+            <div id="war-elephant" class="character-card">
+                <div class="card-name-p">
+                    <p>Ancient Psychic Tandem <br>War Elephant</p>
+                </div>
+                <div class="character-img">
+                    <img src="assets/images/ancient-psychic-tandem-war-elephant.png" alt="Ancient Psychic Tandem War Elephant Image">
+                </div>
+                <p id="war-elephant-hp" class="health-points-p"></p>
             </div>
-            <div class="character-img">
-                <img src="assets/images/choose-goose.png" alt="Choose Goose Image">
+            <div id="james-i" class="character-card">
+                <div class="card-name-p">
+                    <p>James I</p>
+                </div>
+                <div class="character-img">
+                    <img src="assets/images/james-i.png" alt="James the First Image">
+                </div>
+                <p id="james-i-hp" class="health-points-p"></p>
             </div>
-            <p id="choose-goose-hp" class="health-points-p"></p>
-        </div>
-        <div id="war-elephant" data="war-elephant" class="character-card">
-            <div class="card-name-p">
-                <p>Ancient Psychic Tandem <br>War Elephant</p>
+        </section>
+        <section id="opponents" class="card-row">
+            <h2>Pick Your Opponent</h2>
+    
+        </section>
+        <section id="button-row" class="button-row">
+            <h2>Fight Controls</h2>
+            <button id="attack-button">Attack!</button>
+        </section>
+        <section id="npc-enemies" class="card-row">
+            <h2>Enemy</h2>
+    
+        </section>
+        <section id="game-info" class="button-row">
+            <div id="info-text-1" class="info-text">
+                <h3 id="attack-text">You attacked <span class="en-name-span"></span> for <span id="pc-attack"></span> damage.
+                    <br><br>
+                    <span class="en-name-span"></span> attacked you for <span id="en-attack"></span> damage.
+                </h3>
             </div>
-            <div class="character-img">
-                <img src="assets/images/ancient-psychic-tandem-war-elephant.png" alt="Ancient Psychic Tandem War Elephant Image">
+            <div id="info-text-2" class="info-text">
+                <h3>
+                    You have been defeated ... Game Over!!!
+                    <br> Press Restart to play again.
+                    <br>
+                    
+                </h3>
             </div>
-            <p id="war-elephant-hp" class="health-points-p"></p>
-        </div>
-        <div id="james-i" data="james" class="character-card">
-            <div class="card-name-p">
-                <p>James I</p>
+            <div id="info-text-3" class="info-text">
+                <h3>
+                    You have defeated <span class="en-name-span"></span>, you can choose to fight another enemy.
+                </h3>
             </div>
-            <div class="character-img">
-                <img src="assets/images/james-i.png" alt="James the First Image">
+            <div id="info-text-4" class="info-text">
+                <h3>
+                    No enemy here. Please select an enemy to fight.
+                </h3>
             </div>
-            <p id="james-i-hp" class="health-points-p"></p>
-        </div>
-    </section>
-    <section id="opponents" class="card-row">
-        <h2>Pick Your Opponent</h2>
-
-    </section>
-    <section id="button-row" class="button-row">
-        <h2>Fight Controls</h2>
-        <button id="attack-button">Attack!</button>
-    </section>
-    <section id="npc-enemies" class="card-row">
-        <h2>Enemy</h2>
-
-    </section>
-    <section id="game-info" class="button-row">
-        <div id="info-text-1" class="info-text">
-            <h3 id="attack-text">You attacked <span class="en-name-span"></span> for <span id="pc-attack"></span> damage.
-                <br>
-                <span class="en-name-span"></span> attacked you for <span id="en-attack"></span> damage.
-            </h3>
-        </div>
-        <div id="info-text-2" class="info-text">
-            <h3>
-                You have been defeated ... Gane Over!!! 
-                <br> Press Restart to play again.
-                <br>
+            <div id="info-text-5" class="info-text">
+                <h3>
+                    You Won!! Game Over!!
+                    <br>
+                    Press Restart to play again.
+                    <br>
+                </h3>
+            </div>
+            <div id="info-text-6" class="info-text">
+                <h3>Please select a character first!</h3>
+            </div>
+            <div id="info-text-button" class="info-text">
                 <button id="restart">Restart</button>
-            </h3>
-        </div>
-        <div id="info-text-3" class="info-text">
-            <h3>
-                You have defeated <span class="en-name-span"></span>, you can choose to fight another enemy.
-            </h3>
-        </div>
-        <div id="info-text-4" class="info-text">
-            <h3>
-                No enemy here. Please select an enemy to fight. 
-            </h3>
-        </div>
-        <div id="info-text-5" class="info-text">
-            <h3>
-                You Won!! Game Over!!
-            </h3>
-        </div>
-    </section>
+            </div>
+        </section>
+    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -104,5 +115,6 @@
     <script type="text/javascript" src="assets/javascript/game.js">
     </script>
 </body>
+
 
 </html>

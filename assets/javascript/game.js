@@ -12,13 +12,18 @@
 
 
 // General Game Variab;es
-var playerCharacterHP = 0;
-var playerCharacterAP = 0;
+var pcHP = 0;
+var pcAC = 0;
 var enemyHP = 0;
 var enemyCA = 0;
 var isPCSelected = false;
 var isEnemySelected = false;
-var currentEnemyName;
+var currentPC;
+var currentEnemy;
+isPcAlive = true;
+isEnemyAlive = true;
+isBothAlive = true;
+enemiesRemaining = 3;
 
 // jQuery Variables
 var opponentsP = $("#opponents");
@@ -31,6 +36,7 @@ var hotDogPrincess = {
     counterAttack: 15,
     hasBattled: false,
     id: $("#hot-dog"),
+    hpId: $("#hot-dog-hp"),
     moveOtherCards: function () {
         opponentsP.append($("#choose-goose"));
         opponentsP.append($("#war-elephant"));
@@ -44,6 +50,7 @@ var warElephant = {
     counterAttack: 30,
     hasBattled: false,
     id: $("#war-elephant"),
+    hpId: $("#war-elephant-hp"),
     moveOtherCards: function () {
         opponentsP.append($("#hot-dog"));
         opponentsP.append($("#choose-goose"));
@@ -57,6 +64,7 @@ var chooseGoose = {
     counterAttack: 20,
     hasBattled: false,
     id: $("#choose-goose"),
+    hpId: $("#choose-goose-hp"),
     moveOtherCards: function () {
         opponentsP.append($("#hot-dog"));
         opponentsP.append($("#war-elephant"));
@@ -70,6 +78,7 @@ var james = {
     counterAttack: 10,
     hasBattled: false,
     id: $("#james-i"),
+    hpId: $("#james-i-hp"),
     moveOtherCards: function () {
         opponentsP.append($("#hot-dog"));
         opponentsP.append($("#choose-goose"));
@@ -80,11 +89,36 @@ var james = {
 $(document).ready(function () {
     setCardHP();
     cardSelection();
-    $("#attack-button").click (function() {
-        if (isPCSelected && !isEnemySelected) {
+    $("#restart").click(function () {
+        reset();
+    });
+    // attack button actions
+    $("#attack-button").click(function () {
+        if (!isPCSelected) {
+            $("#info-text-6").css("display", "inline");
+        } else if (isPCSelected && !isEnemySelected) {
+            infoHide();
             $("#info-text-4").css("display", "inline");
-        } else if (isPCSelected && isEnemySelected) {
-            console.log("placeholder");
+        } else {
+            showInfo1();
+            // attack logic
+            enemyHP -= pcAC;
+            pcAC += pcAC;
+            checkLife();
+
+            if (isEnemyAlive) {
+                pcHP -= enemyCA;
+                checkLife();
+            } else if (!isEnemyAlive) {
+                enemiesRemaining--;
+                if (enemiesRemaining === 0) {
+                    infoHide();
+                    $("#info-text-5").css("display", "block");
+                    $("#info-text-button").css("display", "block");
+                }
+            }
+
+
         }
     });
 
@@ -93,37 +127,77 @@ $(document).ready(function () {
 
 // Functions
 function changePCStat(char) {
-    playerCharacterHP = char.healthPoints;
-    playerCharacterAP = char.attackPoints;
+    currentPC = char;
+    pcHP = currentPC.healthPoints;
+    pcAC = currentPC.attackPoints;
     isPCSelected = true;
-    char.moveOtherCards();
+    currentPC.moveOtherCards();
+    infoHide();
 }
 function changeEnemyStat(enem) {
-    enemyHP = enem.healthPoints;
-    enemyCA = enem.counterAttack;
+    currentEnemy = enem;
+    enemyHP = currentEnemy.healthPoints;
+    enemyCA = currentEnemy.counterAttack;
     isEnemySelected = true;
-    infoHide()
-    $("#npc-enemies").append(enem.id);
-    currentEnemyName = enem.name;
-    enNameTest();
+    isEnemyAlive = true;
+    $("#npc-enemies").append(currentEnemy.id);
+    infoHide();
 }
 function setCardHP() {
-    $("#hot-dog-hp").text(hotDogPrincess.healthPoints);
-    $("#choose-goose-hp").text(chooseGoose.healthPoints);
-    $("#war-elephant-hp").text(warElephant.healthPoints);
-    $("#james-i-hp").text(james.healthPoints);
+    hotDogPrincess.hpId.text(hotDogPrincess.healthPoints);
+    chooseGoose.hpId.text(chooseGoose.healthPoints);
+    warElephant.hpId.text(warElephant.healthPoints);
+    james.hpId.text(james.healthPoints);
 }
 function infoHide() {
     $(".info-text").css("display", "none");
 }
+function showInfo1() {
+    $(".en-name-span").text(currentEnemy.name);
+    $("#en-attack").text(enemyCA);
+    $("#pc-attack").text(pcAC);
+    currentPC.hpId.text(pcHP);
+    currentEnemy.hpId.text(enemyHP);
+    $("#info-text-1").css("display", "block");
+}
 function reset() {
     setCardHP();
     infoHide();
+    isEnemyAlive = true;
+    isPcAlive = true;
+    isPCSelected = false;
+    isEnemySelected = false;
+    enemiesRemaining = 3;
+    hotDogPrincess.id.css("display", "block");
+    chooseGoose.id.css("display", "block");
+    warElephant.id.css("display", "block");
+    james.id.css("display", "block");
+    $("#player-character").append(hotDogPrincess.id, chooseGoose.id, warElephant.id, james.id);
+}
+function checkLife() {
+    if (pcHP > 0 && enemyHP > 0) {
+        isBothAlive = true;
+    } else if (pcHP > 0 && !(enemyHP > 0)) {
+        infoHide();
+        isEnemyAlive = false;
+        isPcAlive = true;
+        $("#info-text-3").css("display", "block");
+        currentEnemy.id.css("display", "none");
+        isEnemySelected = false;
+    } else if (!(pcHP > 0) && enemyHP > 0) {
+        infoHide();
+        isEnemyAlive = true;
+        isPcAlive = false;
+        $("#info-text-2").css("display", "block");
+        $("#info-text-button").css("display", "block");
+    } else {
+        console.log("something is wrong with the PC and/or Enemy Life")
+    }
 }
 function cardSelection() {
     $("div").click(function () {
         if (!isPCSelected && !isEnemySelected) {
-            switch ($(this).attr("data")) {
+            switch ($(this).attr("id")) {
                 case "hot-dog":
                     changePCStat(hotDogPrincess);
                     break;
@@ -133,12 +207,12 @@ function cardSelection() {
                 case "war-elephant":
                     changePCStat(warElephant);
                     break;
-                case "james":
+                case "james-i":
                     changePCStat(james);
                     break;
             }
         } else if (isPCSelected && !isEnemySelected) {
-            switch ($(this).parents().attr("data")) {
+            switch ($(this).parents().attr("id")) {
                 case "hot-dog":
                     changeEnemyStat(hotDogPrincess);
                     break;
@@ -148,7 +222,7 @@ function cardSelection() {
                 case "war-elephant":
                     changeEnemyStat(warElephant);
                     break;
-                case "james":
+                case "james-i":
                     changeEnemyStat(james);
                     break;
             }
