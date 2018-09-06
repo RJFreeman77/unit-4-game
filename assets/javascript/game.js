@@ -1,17 +1,3 @@
-
-// set up character objects with stats. 
-// when you click on a character
-// other cards move to the enemies area. use the .append() function to move them to the other section. https://stackoverflow.com/questions/2596833/how-to-move-child-element-from-one-parent-to-another-using-jquery
-// need a way to set that character as the current characer. 
-// probably going to set up blank pc stat variables. then change those when the character is seleted
-// have functions inside objects that set the global stat variables to the character's variables
-
-// after enemy is defeated, change the div to display: none;
-
-// have to put down display information about who was attacked. 
-
-
-// General Game Variab;es
 var pcHP = 0;
 var pcAC = 0;
 var enemyHP = 0;
@@ -105,7 +91,7 @@ $(document).ready(function () {
             enemyHP -= pcAC;
             pcAC += pcAC;
             checkLife();
-
+            
             if (isEnemyAlive) {
                 pcHP -= enemyCA;
                 checkLife();
@@ -117,12 +103,8 @@ $(document).ready(function () {
                     $("#info-text-button").css("display", "block");
                 }
             }
-
-
         }
     });
-
-
 });
 
 // Functions
